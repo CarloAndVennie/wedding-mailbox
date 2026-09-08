@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Jon Carlo & Vennie Ann — Wedding Mailbox</title>
+<style>
+   #photoPreview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #17242b;
+}
+
+.photo-confirmed {
+  margin-top: 8px;
+  font: 600 12px Arial, sans-serif;
+  color: var(--deep);
+}
+:root{--blue:#9aafc0;--deep:#526d7d;--cream:#faf8f4;--gold:#c9b27c;--ink:#30363a;--paper:#fffdf9}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#eef3f6,#faf8f4);color:var(--ink);font-family:Georgia,serif;min-height:100vh}.wrap{width:min(960px,94%);margin:auto;padding:28px 0 60px}.brand{text-align:center;padding:10px 0 28px}.kicker{text-transform:uppercase;letter-spacing:.2em;color:var(--deep);font:600 11px Arial,sans-serif}h1{font-size:clamp(34px,7vw,64px);font-weight:400;margin:10px 0 4px}.date{letter-spacing:.12em;color:var(--deep)}
+.mailbox-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin: 25px 0 65px;
+
+  padding: 0 15px;
+}.mailbox{width:min(330px,78vw);height:235px;position:relative;cursor:pointer;filter:drop-shadow(0 20px 22px #526d7d22)}.body,.roof{background:var(--blue);border:3px solid var(--deep)}.body{position:absolute;left:22px;right:22px;bottom:0;height:150px;border-radius:18px 18px 10px 10px}.roof{position:absolute;left:22px;right:22px;top:42px;height:80px;border-bottom:0;border-radius:120px 120px 0 0}.slot{position:absolute;left:92px;top:95px;width:135px;height:12px;border-radius:8px;background:#334b59}.flag{position:absolute;right:5px;top:78px;width:58px;height:10px;background:var(--gold);border-radius:8px;transform:rotate(-90deg);transform-origin:left center}.flag:after{content:"";position:absolute;right:-3px;top:-10px;border-left:20px solid var(--gold);border-top:15px solid transparent;border-bottom:15px solid transparent}.label{position:absolute;left:83px;bottom:28px;width:155px;text-align:center;background:var(--paper);border:1px solid var(--gold);padding:8px 5px;font:700 11px Arial,sans-serif;letter-spacing:.16em;color:var(--deep)}
+   .hint {
+  position: absolute;
+  bottom: -38px;
+  left: 0;
+  width: 100%;
+
+  text-align: center;
+
+  font: 600 11px/1.4 Arial, sans-serif;
+
+  letter-spacing: .18em;
+
+  color: var(--deep);
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+.open-btn,.btn{border:0;cursor:pointer;font:600 12px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+   .open-btn {
+  background: var(--deep);
+  color: white;
+
+  border-radius: 999px;
+
+  padding: 14px 24px;
+
+  margin-top: 42px;
+
+  min-width: 190px;
+
+  box-shadow: 0 8px 20px rgba(48, 54, 58, .16);
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.open-btn:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 24px rgba(48, 54, 58, .20);
+}
+
+.open-btn:active {
+  transform: translateY(0);
+}.panel{display:none;background:#fffdf9ee;border:1px solid #c9b27c88;border-radius:24px;padding:20px;box-shadow:0 25px 60px #30363a20}.panel.show{display:block;animation:rise .45s ease}@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}.envelope{display:grid;grid-template-columns:1fr 1fr;gap:14px}.card{background:#fff;border:1px solid #526d7d33;border-radius:18px;padding:16px}.card h2{font-size:22px;font-weight:400;margin:0 0 5px}.sub{font:12px/1.5 Arial,sans-serif;color:#66747b;margin-bottom:12px}.camera{background:#17242b;border-radius:14px;overflow:hidden;aspect-ratio:4/3;display:grid;place-items:center;color:#fff}.camera video{width:100%;height:100%;object-fit:cover}.camera-note{padding:16px;text-align:center;font:12px Arial,sans-serif;color:#dce6eb}.controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.btn{padding:11px 14px;border-radius:10px;background:var(--blue);color:#23323a}.btn.primary{background:var(--deep);color:#fff}.btn.light{background:#eef3f6}label{display:block;font:600 11px Arial,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:var(--deep);margin:12px 0 7px}input,textarea{width:100%;font:16px/1.5 Georgia,serif;border:1px solid #9aafc077;border-radius:12px;padding:12px;background:var(--paper);color:var(--ink)}textarea{min-height:210px;resize:vertical}.submit-row{margin-top:16px;display:flex;justify-content:space-between;gap:12px;align-items:center}.status{font:13px Arial,sans-serif;color:var(--deep)}.success{text-align:center;padding:35px 10px}.success .seal{font-size:48px}@media(max-width:700px){
+
+  .envelope{
+    grid-template-columns:1fr;
+  }
+
+  .submit-row{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .mailbox{
+    transform:scale(.92);
+  }
+
+  .mailbox-stage{
+    margin-bottom:55px;
+  }
+
+  .mailbox .hint{
+    bottom:-34px;
+    font-size:10px;
+    letter-spacing:.14em;
+  }
+
+  .open-btn{
+    margin-top:35px;
+    min-width:200px;
+  }
+
+}
+   {.envelope{grid-template-columns:1fr}.submit-row{flex-direction:column;align-items:stretch}}
+</style>
+</head>
+<body><main class="wrap">
+<section class="brand"><div class="kicker">A little mailbox for our wedding memories</div><h1>Jon Carlo &amp; Vennie Ann</h1><div class="date">10 • 10 • 2026</div></section>
+<section class="mailbox-stage"><div class="mailbox" id="mailbox" tabindex="0" aria-label="Open the wedding mailbox"><div class="roof"></div><div class="body"></div><div class="slot"></div><div class="flag"></div><div class="label">OUR MAILBOX</div><div class="hint">TAP TO OPEN</div></div><button class="open-btn" id="openBtn">Open the mailbox</button></section>
+<section class="panel" id="panel"><div class="envelope">
+   
+<div class="card"><h2>📷 Capture a moment</h2><div class="sub">Take a photo of something you want us to remember from our wedding day.</div>
+   <div class="camera" id="cameraBox">
+
+  <div class="camera-note" id="cameraNote">
+    Your camera preview will appear here.
+  </div>
+
+  <video
+    id="video"
+    autoplay
+    playsinline
+    hidden>
+  </video>
+
+  <img
+    id="photoPreview"
+    alt="Captured wedding memory"
+    hidden>
+
+  <canvas
+    id="canvas"
+    hidden>
+  </canvas>
+
+</div>
+   <div class="controls"><button class="btn primary" id="startCamera">Use camera</button>
+<button class="btn" id="switchCamera" disabled>Switch camera ↔</button>
+<button class="btn" id="takePhoto" disabled>Take photo</button><button class="btn light" id="retake" disabled>Retake</button></div></div>
+<div class="card"><h2>✍️ Write a note</h2><div class="sub">Leave Jon Carlo &amp; Vennie Ann a wish, message, or favorite moment.</div><label>Your name</label><input id="name" maxlength="100" placeholder="e.g. Maria & family"><label>Your message</label><textarea id="message" maxlength="2000" placeholder="Dear Jon Carlo & Vennie Ann..."></textarea></div>
+</div><div class="submit-row"><div class="status" id="status">Your photo and note will be sent together.</div><button class="btn primary" id="send">Seal &amp; send the envelope 💌</button></div></section>
+   
+<section class="panel" id="success"><div class="success"><div class="seal">💌</div><h2>Memory delivered.</h2><p>Thank you for leaving a little piece of your day with us.</p><button class="btn" onclick="location.reload()">Send another memory</button></div></section>
+</main>
+<script>
+// After deploying Code.gs, paste its Web App URL here.
+const BACKEND_URL='https://script.google.com/macros/s/AKfycbwWR9IMqH1iwYe8Z9pW8uQ9yU1w5jIhPtAo83npXXHaeKWyywtvB1tEMKQFK1TAXg8J/exec';
+
+/* 2-minute cooldown */
+const COOLDOWN_MS = 2 * 60 * 1000;
+
+const mailbox = document.getElementById("mailbox");
+const openBtn = document.getElementById("openBtn");
+const panel = document.getElementById("panel");
+
+const video = document.getElementById("video");
+const canvas = document.getElementById("canvas");
+const cameraNote = document.getElementById("cameraNote");
+const photoPreview = document.getElementById("photoPreview");
+
+const startCamera = document.getElementById("startCamera");
+const switchCamera = document.getElementById("switchCamera");
+const takePhoto = document.getElementById("takePhoto");
+const retake = document.getElementById("retake");
+
+const send = document.getElementById("send");
+const status = document.getElementById("status");
+
+let stream = null;
+let imageData = "";
+let facingMode = "environment";
+let cooldownTimer = null;
+
+
+/* =========================
+   MAILBOX
+========================= */
+
+function openMailbox() {
+    panel.classList.add("show");
+    panel.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+mailbox.addEventListener("click", openMailbox);
+openBtn.addEventListener("click", openMailbox);
+
+mailbox.addEventListener("keydown", function(e) {
+    if (e.key === "Enter" || e.key === " ") {
+        openMailbox();
+    }
+});
+
+
+/* =========================
+   CAMERA
+========================= */
+
+function stopCamera() {
+
+    if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        stream = null;
+    }
+
+}
+
+
+async function startCameraStream() {
+
+    if (!navigator.mediaDevices ||
+        !navigator.mediaDevices.getUserMedia) {
+
+        status.textContent =
+            "Camera access is not available in this browser.";
+
+        return;
+    }
+
+    stopCamera();
+
+    try {
+
+        stream = await navigator.mediaDevices.getUserMedia({
+
+            video: {
+                facingMode: {
+                    ideal: facingMode
+                },
+
+                width: {
+                    ideal: 1280
+                },
+
+                height: {
+                    ideal: 960
+                }
+            },
+
+            audio: false
+
+        });
+
+        video.srcObject = stream;
+
+        video.hidden = false;
+        cameraNote.hidden = true;
+
+        takePhoto.disabled = false;
+        switchCamera.disabled = false;
+
+        startCamera.textContent = "Camera ready";
+
+        if (facingMode === "environment") {
+
+            status.textContent =
+                "Rear camera selected.";
+
+        } else {
+
+            status.textContent =
+                "Front camera selected.";
+
+        }
+
+    } catch (error) {
+
+        status.textContent =
+            "Camera permission was not granted or this camera is unavailable.";
+
+    }
+
+}
+
+
+/* Start camera */
+
+startCamera.addEventListener("click", function() {
+
+    startCameraStream();
+
+});
+
+
+/* Switch front/rear */
+
+switchCamera.addEventListener("click", async function() {
+
+    if (facingMode === "environment") {
+
+        facingMode = "user";
+
+    } else {
+
+        facingMode = "environment";
+
+    }
+
+    await startCameraStream();
+
+});
+
+
+/* Take photo */
+
+takePhoto.addEventListener("click", function() {
+
+    const width = video.videoWidth || 1280;
+    const height = video.videoHeight || 960;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    const context = canvas.getContext("2d");
+
+    context.drawImage(
+        video,
+        0,
+        0,
+        width,
+        height
+    );
+
+    imageData = canvas.toDataURL(
+        "image/jpeg",
+        0.82
+    );
+
+    /* Show captured photo */
+
+    photoPreview.src = imageData;
+
+    photoPreview.hidden = false;
+
+    video.hidden = true;
+
+    cameraNote.hidden = true;
+
+    takePhoto.disabled = true;
+
+    retake.disabled = false;
+
+    status.textContent =
+        "✓ Photo captured — review it before sending.";
+
+});
+
+
+/* Retake */
+
+retake.addEventListener("click", function() {
+
+    imageData = "";
+
+    photoPreview.src = "";
+
+    photoPreview.hidden = true;
+
+    video.hidden = false;
+
+    cameraNote.hidden = true;
+
+    takePhoto.disabled = false;
+
+    retake.disabled = true;
+
+    status.textContent =
+        "Camera ready — take another photo.";
+
+});
+
+
+/* =========================
+   TWO-MINUTE COOLDOWN
+========================= */
+
+function getCooldownEnd() {
+
+    return Number(
+        localStorage.getItem(
+            "weddingMailboxCooldownEnd"
+        ) || 0
+    );
+
+}
+
+
+function setCooldown() {
+
+    const end =
+        Date.now() + COOLDOWN_MS;
+
+    localStorage.setItem(
+        "weddingMailboxCooldownEnd",
+        String(end)
+    );
+
+    updateCooldown();
+
+}
+
+
+function updateCooldown() {
+
+    const end = getCooldownEnd();
+
+    const remaining =
+        end - Date.now();
+
+
+    if (remaining <= 0) {
+
+        localStorage.removeItem(
+            "weddingMailboxCooldownEnd"
+        );
+
+        send.disabled = false;
+
+        status.textContent =
+            "Your photo and note will be sent together.";
+
+        if (cooldownTimer) {
+
+            clearInterval(cooldownTimer);
+            cooldownTimer = null;
+
+        }
+
+        return;
+
+    }
+
+
+    send.disabled = true;
+
+
+    const totalSeconds =
+        Math.ceil(remaining / 1000);
+
+    const minutes =
+        Math.floor(totalSeconds / 60);
+
+    const seconds =
+        totalSeconds % 60;
+
+
+    status.innerHTML =
+        "Another memory can be sent in " +
+        "<strong>" +
+        minutes +
+        ":" +
+        String(seconds).padStart(2, "0") +
+        "</strong>";
+
+}
+
+
+function startCooldownTimer() {
+
+    updateCooldown();
+
+    if (cooldownTimer) {
+
+        clearInterval(cooldownTimer);
+
+    }
+
+    cooldownTimer =
+        setInterval(
+            updateCooldown,
+            1000
+        );
+
+}
+
+
+/* Check cooldown when page loads */
+
+startCooldownTimer();
+
+
+/* =========================
+   SEND MEMORY
+========================= */
+
+send.addEventListener("click", async function() {
+
+    /* Prevent another submission during cooldown */
+
+    if (getCooldownEnd() > Date.now()) {
+
+        startCooldownTimer();
+
+        return;
+
+    }
+
+
+    const name =
+        document
+            .getElementById("name")
+            .value
+            .trim();
+
+    const message =
+        document
+            .getElementById("message")
+            .value
+            .trim();
+
+
+    if (!name || !message) {
+
+        status.textContent =
+            "Please add your name and a message first.";
+
+        return;
+
+    }
+
+
+    if (!imageData) {
+
+        status.textContent =
+            "Please capture a photo first.";
+
+        return;
+
+    }
+
+
+    if (!BACKEND_URL ||
+        BACKEND_URL.includes("YOUR_EXISTING")) {
+
+        status.textContent =
+            "The mailbox backend URL has not been configured.";
+
+        return;
+
+    }
+
+
+    send.disabled = true;
+
+    status.textContent =
+        "Sealing your envelope…";
+
+
+    const body =
+        new URLSearchParams({
+
+            name: name,
+
+            message: message,
+
+            image: imageData
+
+        });
+
+
+    try {
+
+        await fetch(
+            BACKEND_URL,
+            {
+                method: "POST",
+
+                mode: "no-cors",
+
+                headers: {
+                    "Content-Type":
+                        "application/x-www-form-urlencoded;charset=UTF-8"
+                },
+
+                body: body
+            }
+        );
+
+
+        stopCamera();
+
+
+        /* Start 2-minute cooldown */
+
+        setCooldown();
+
+
+        panel.style.display =
+            "none";
+
+        document
+            .getElementById("success")
+            .classList
+            .add("show");
+
+
+    } catch (error) {
+
+        send.disabled = false;
+
+        status.textContent =
+            "Something went wrong. Please try again.";
+
+    }
+
+});
+</script></body></html>
