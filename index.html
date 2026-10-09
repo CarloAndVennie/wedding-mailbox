@@ -175,6 +175,7 @@
 }
 .couple-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .couple-photo img[hidden] { display: none; }
+.photo-placeholder[hidden] { display: none !important; }
 .photo-placeholder { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--deep); }
 .photo-placeholder-title { font: italic 22px Georgia, serif; }
 .photo-placeholder-sub { font: 11px Arial, sans-serif; letter-spacing: .08em; text-transform: uppercase; }
@@ -338,12 +339,12 @@ textarea { min-height: 150px; }
   object-fit: cover;
   object-position: center;
   border-radius: 14px;
-  opacity: 0;
-  transition: opacity .35s ease;
+  opacity: 1 !important;
+  transition: none;
 }
-#couplePhoto[hidden] { display: none; }
-#couplePhoto.photo-ready { opacity: 1; }
-\n</style>
+#couplePhoto[hidden] { display: none !important; }
+.photo-placeholder[hidden] { display: none !important; }
+</style>
 </head>
 <body><main class="wrap">
 <section class="landing" id="landing">
@@ -361,7 +362,7 @@ textarea { min-height: 150px; }
   </div>
   <p class="landing-quote">Together Is Our Favorite Place to Be</p>
   <div class="mailbox-stage compact no-mailbox">
-    <button class="open-btn" id="openBtn">Leave us a memory</button>
+    <button class="open-btn" id="openBtn" type="button">Leave us a memory</button>
     <div class="landing-hint">Share a photo and a little message with us</div>
   </div>
 </section>
@@ -413,18 +414,27 @@ const openBtn = document.getElementById("openBtn");
 
     photo.onload = function() {
         photo.hidden = false;
-        requestAnimationFrame(() => photo.classList.add("photo-ready"));
+        photo.style.display = "block";
+        photo.style.opacity = "1";
         placeholder.hidden = true;
+        placeholder.style.display = "none";
     };
 
     photo.onerror = function() {
         photo.hidden = true;
+        photo.style.display = "none";
         placeholder.hidden = false;
+        placeholder.style.display = "flex";
         placeholder.querySelector(".photo-placeholder-sub").textContent =
-            "Please check the images folder and photo filenames.";
+            "Photo failed to display. Please check the selected image.";
     };
 
+    // Set handlers before assigning src so cached images are handled safely.
+    photo.hidden = true;
     photo.src = selected;
+    if (photo.complete && photo.naturalWidth > 0) {
+        photo.onload();
+    }
 })();
 
 const panel = document.getElementById("panel");
@@ -464,6 +474,8 @@ function showLanding() {
 }
 
 backBtn.addEventListener("click", showLanding);
+const againBtn = document.getElementById("againBtn");
+if (againBtn) againBtn.addEventListener("click", showLanding);
 
 openBtn.addEventListener("click", openMailbox);
 
